@@ -1,0 +1,42 @@
+<form [formGroup]="ModelConnect" (submit)="OnConnect()">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="UserId">User ID:</label>
+          <input type="text" class="form-control" id="UserId" formControlName="UserId" >
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="Channel">Chennel:</label>
+          <input type="text" class="form-control" id="Channel" formControlName="Channel" >
+        </div>
+      </div>
+      <div class="col-12 text-right">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+    <hr>
+  </form>
+  <div class="row">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>User ID</th>
+          <th>Channel</th>
+          <th>Messages</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let someObjects of someObject">
+          <td>{{someObjects.UserId}}</td>
+          <td>{{someObjects.Channel}}</td>
+          <td>
+            <code>
+                <ngx-json-viewer [json]="someObjects.Messages" [expanded]="false"></ngx-json-viewer>
+            </code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

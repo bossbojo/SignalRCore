@@ -1,0 +1,1 @@
+export const baseUrl = window.location.hostname != 'localhost'? 'http://localhost:5000':'http://localhost:58752/api';

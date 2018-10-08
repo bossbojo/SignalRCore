@@ -5,7 +5,7 @@ import * as signalR from '@aspnet/signalr';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   private hubConnection: HubConnection;
@@ -14,6 +14,7 @@ export class AppComponent {
   constructor() {
   }
   ngOnInit() {
+    
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl('http://localhost:5000/notification')
       .configureLogging(signalR.LogLevel.Information)
