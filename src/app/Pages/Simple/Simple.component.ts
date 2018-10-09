@@ -1,5 +1,5 @@
-import { HubConnection } from '@aspnet/signalr';
-import signalR = require('@aspnet/signalr');
+import { baseUrl } from './../../Config/url.config';
+import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -9,6 +9,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./Simple.component.scss']
 })
 export class SimpleComponent implements OnInit {
+  baseUrl = baseUrl;
   ModelConnect: FormGroup;
   someObject: model_connect[] = [];
   private hubConnection: HubConnection;
@@ -22,17 +23,16 @@ export class SimpleComponent implements OnInit {
   }
   OnConnect() {
     this.someObject = [];
-    this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('http://localhost:5000/notification')
-      .configureLogging(signalR.LogLevel.Information)
-      .build();
+    this.hubConnection = new HubConnectionBuilder().withUrl(baseUrl+'notification').build();
 
     this.hubConnection.start().then(() => {
       console.log('Connection started!');
-      this.hubConnection
-        .invoke('OnConnectHub', this.ModelConnect.value.UserId, this.ModelConnect.value.Channel)
-        .catch(err => console.error(err));
-    }).catch(err => console.log('Error while establishing connection :('));
+      this.hubConnection.invoke('OnConnectHub', this.ModelConnect.value.UserId, this.ModelConnect.value.Channel).catch(err => console.error(err));
+    })
+      .catch(err => {
+        console.log('Error while establishing connection :(')
+      });
+
 
     this.hubConnection.on('OnConnected', (Ojson: string) => {
       if (Ojson) {
@@ -48,6 +48,7 @@ export class SimpleComponent implements OnInit {
         console.log(this.someObject);
       }
     });
+
     this.hubConnection.on('ReceiveNotification', (Ojson: string) => {
       if (Ojson) {
         let data = JSON.parse(Ojson);

@@ -1,0 +1,68 @@
+<div class="row">
+    <h3>Server Method</h3>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>#</th>
+          <th>Methods</th>
+          <th>Parameter</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>
+            <label class="var">this</label>.hubConnection <br> .<label class="method">invoke</label>(
+            <label class="string">'OnConnectHub'</label>,<label class="var">string</label> UserId,<label class="var">string</label>
+            Channel) <br>
+            .<label class="method">catch</label>(<label class="err">err</label> => console.error(<label class="err">err</label>));
+            <br>
+  
+          </td>
+          <td>
+            <label class="var">string</label> UserId : UserId ของระบบนั้นๆ <br>
+            <label class="var">string</label> Chanel : Channel ที่ได้ทำการสร้างขึ้นเพื่อติดต่อ
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="row">
+    <h3>Client Method</h3>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>#</th>
+          <th>Methods</th>
+          <th>Response</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>
+            <label class="var">this</label>.hubConnection.<label class="method">on</label>( <label class="string">'OnConnected'</label>,
+            (Ojson: <label class="var">string</label> ) => &#123; <br>
+            &nbsp; &nbsp; <label class="var">let</label> data = <label class="method">JSON</label>.parse(Ojson); <br>
+            &#125;
+          </td>
+          <td>
+            <label class="var">string</label> Ojson : เป็น json string ของการ connection
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>
+            <label class="var">this</label>.hubConnection.<label class="method">on</label>( <label class="string">'ReceiveNotification'</label>,
+            (Ojson: <label class="var">string</label> ) => &#123; <br>
+            &nbsp; &nbsp; <label class="var">let</label> data = <label class="method">JSON</label>.parse(Ojson); <br>
+            &#125;
+          </td>
+          <td>
+            <label class="var">string</label> Ojson : เป็นข้อความการเเจ้งเตือนที่จะส่งมา หรือ เป็น json string
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

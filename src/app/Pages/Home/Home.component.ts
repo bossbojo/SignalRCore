@@ -1,3 +1,4 @@
+import { baseUrl } from './../../Config/url.config';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./Home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  baseUrl = baseUrl;
   constructor() { }
 
   ngOnInit() {

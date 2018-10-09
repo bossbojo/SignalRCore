@@ -1,58 +1,10 @@
 <h3>URL Hub</h3>
-http://localhost:5000/notification
+ {{baseUrl}}notification
 <hr>
 <h3>HOW TO ConnectHub</h3>
- hubConnection = <label class="var">new</label> <label class="method">signalR.HubConnectionBuilder().withUrl</label>([<label class="var">string</label> URL_Hub])<br>
+hubConnection = <label class="var">new</label> <label class="method">signalR.HubConnectionBuilder().withUrl</label>(<label
+  class="var">string</label> URL_Hub)<br>
 .<label class="method">configureLogging</label>(signalR.LogLevel.Information)<br>
 .<label class="method">build</label>();<br>
 <hr>
-<div class="row">
-  <h3>Server Method</h3>
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th>Methods</th>
-        <th>Parameter</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <label class="var">this</label>.hubConnection <br> .<label class="method">invoke</label>( 
-          <label class="string">'OnConnectHub'</label>,[<label class="var">string</label> UserId],[<label class="var">string</label> 
-          Channel]) <br> .<label class="method">catch</label>(
-          <label class="err">err</label> => console.error(<label class="err">err</label>)); <br>
-
-        </td>
-        <td>
-          <label class="var">string</label> UserId : UserId ของระบบนั้นๆ <br>
-          <label class="var">string</label> Chanel : Channel ที่ได้ทำการสร้างขึ้นเพื่อติดต่อ
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="row">
-  <h3>Client Method</h3>
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th>Methods</th>
-        <th>Parameter</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <label class="var">this</label>.hubConnection.<label class="method">on</label>( <label class="string">'ReceiveNotification'</label>, (Ojson: <label class="var">string</label> ) => &#123; <br>
-          <label class="var">let</label> data = <label class="method">JSON</label>.parse(Ojson); <br>
-          &#125;
-        </td>
-        <td>
-          <label class="var">string</label> Ojson : เป็นข้อความที่จะส่งมา หรือ เป็น json string
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<app-notification-hub></app-notification-hub>
